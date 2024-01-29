@@ -1,0 +1,6 @@
+--Znajdź film z największą liczbą aktorów--
+select top 1 Filmy.Tytul, count(Film_Aktor.IdAktora) as LiczbaAktorow
+from Filmy
+inner join Film_Aktor on Filmy.IdFilmy = Film_Aktor.IdFilmu
+group by filmy.Tytul
+order by LiczbaAktorow desc
