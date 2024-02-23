@@ -1,50 +1,50 @@
 
---1. Pokaø wszystkie filmy--
+<b>1. Poka≈º wszystkie filmy</b>
 
 SELECT *
 FROM Filmy
 
---2. Pokaø wszystkich aktorÛw
+--2. Poka≈º wszystkich aktor√≥w
 
 SELECT ImieNazwisko
 FROM Aktorzy
 
---3. Pokaø imiona i nazwiska uczestnikÛw wydarzeÒ 
+--3. Poka≈º imiona i nazwiska uczestnik√≥w wydarze≈Ñ 
 
-SELECT ImiÍ, Nazwisko
+SELECT Imiƒô, Nazwisko
 FROM Osoby
 
---4. Pokaø tytu≥y filmÛw trajπcych co najmniej dwie godziny
+--4. Poka≈º tytu≈Çy film√≥w trajƒÖcych co najmniej dwie godziny
 
 SELECT Tytul
 FROM Filmy
 WHERE CzasTrwania_min >= 120
 
---5. Ilu jest aktorÛw urodzonych w kwietniu?
+--5. Ilu jest aktor√≥w urodzonych w kwietniu?
 
 SELECT COUNT(*) AS Ilosc
 FROM Aktorzy
 WHERE MONTH(DataUrodzenia) = 04
 
---6. Pokaø tytu≥y 3 najnowszych filmÛw 
+--6. Poka≈º tytu≈Çy 3 najnowszych film√≥w 
 
 SELECT TOP 3 Tytul
 FROM Filmy
 ORDER BY RokProdukcji DESC
 
---7. Pokaø filmy, ktÛrych tytu≥y zaczynajπ siÍ na literÍ 'S'
+--7. Poka≈º filmy, kt√≥rych tytu≈Çy zaczynajƒÖ siƒô na literƒô 'S'
 
 SELECT Tytul
 FROM Filmy
 WHERE Tytul like 's%'
 
---8. Pokaø filmy wyprodukowane po roku 2000 trwajπce mniej niø 2 godziny'
+--8. Poka≈º filmy wyprodukowane po roku 2000 trwajƒÖce mniej ni≈º 2 godziny'
 
 SELECT Tytul
 FROM Filmy
 WHERE RokProdukcji > 2000 AND CzasTrwania_min < 120
 
---9. W jakich filmach gra≥ Tom Hanks?
+--9. W jakich filmach gra≈Ç Tom Hanks?
 
 SELECT f.Tytul
 FROM Filmy f
@@ -52,7 +52,7 @@ INNER JOIN Film_Aktor fa ON f.IdFilmy = fa.IdFilmu
 INNER JOIN Aktorzy a ON a.IdAktorzy = fa.IdAktora
 WHERE a.ImieNazwisko = 'Tom Hanks'
 
---10.KtÛrzy aktorzy grali w przynajmniej dwÛch filmach?
+--10.Kt√≥rzy aktorzy grali w przynajmniej dw√≥ch filmach?
 
 SELECT a.ImieNazwisko, COUNT(*) AS Liczba_filmow
 FROM Aktorzy a
@@ -61,7 +61,7 @@ INNER JOIN Filmy f ON f.IdFilmy = a.IdAktorzy
 GROUP BY a.ImieNazwisko
 HAVING COUNT(*) >=2
 
--- 11. W filmach z jakiego gatunku gra≥ Morgan Freeman?
+-- 11. W filmach z jakiego gatunku gra≈Ç Morgan Freeman?
 
 SELECT DISTINCT g.Nazwa
 FROM Gatunek g
@@ -70,16 +70,16 @@ INNER JOIN Film_Aktor fa ON fa.IdFilmu = fg.IdFilmu
 INNER JOIN Aktorzy a ON a.IdAktorzy = fa.IdAktora
 WHERE a.ImieNazwisko = 'Morgan Freeman'
 
---12. Kto jest najm≥odszym aktorem grajπcym w Fajerwerkach prÛønoúci?
+--12. Kto jest najm≈Çodszym aktorem grajƒÖcym w Fajerwerkach pr√≥≈ºno≈õci?
 
 SELECT TOP 1 a.ImieNazwisko, a.DataUrodzenia
 FROM Aktorzy a
 INNER JOIN Film_Aktor fa ON fa.IdAktora = a.IdAktorzy
 INNER JOIN Filmy f ON f.IdFilmy = fa.IdFilmu
-WHERE f.Tytul = 'Fajerwerki prÛønoúci' 
+WHERE f.Tytul = 'Fajerwerki pr√≥≈ºno≈õci' 
 ORDER BY a.DataUrodzenia DESC 
 
---13. Znajdü aktorÛw, ktÛrzy zagrali w wiÍcej niø jednym filmie
+--13. Znajd≈∫ aktor√≥w, kt√≥rzy zagrali w wiƒôcej ni≈º jednym filmie
 
 SELECT a.ImieNazwisko
 FROM Aktorzy a
@@ -87,12 +87,12 @@ INNER JOIN Film_Aktor fa ON fa.IdAktora = a.IdAktorzy
 GROUP BY a.ImieNazwisko 
 HAVING COUNT(*) > 1
 
--- 14. Ile trwa≥ najkrÛtszy a ile najd≥uøszy film
+-- 14. Ile trwa≈Ç najkr√≥tszy a ile najd≈Çu≈ºszy film
 
 SELECT MAX(CzasTrwania_min) AS najdluzszy_film, Min(CzasTrwania_min) AS najkrotszy_film
 FROM Filmy
 
--- 15. Ile filmÛw by≥o wyprodukowanych w kaødym roku
+-- 15. Ile film√≥w by≈Ço wyprodukowanych w ka≈ºdym roku
 
 SELECT RokProdukcji, COUNT(*) as liczba_filmow
 FROM Filmy
