@@ -1,5 +1,5 @@
 
-<b>1. Pokaż wszystkie filmy</b>
+1. Pokaż wszystkie filmy
 
 SELECT *
 FROM Filmy
